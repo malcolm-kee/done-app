@@ -1,5 +1,5 @@
-<div class="pt-12">
-  <app-content-card>
+<div class="pt-12" [ngSwitch]="status">
+  <app-content-card *ngSwitchCase="'Idle'">
     <div class="px-2 pb-2">
       <a routerLink="/" class="text-gray-600">< Cancel</a>
     </div>
@@ -7,11 +7,26 @@
     <div class="text-center">
       <span class="text-xl">RM</span>
       <span class="text-6xl">
-        {{ ($params | async).amount }}
+        {{ (params$ | async).amount }}
       </span>
     </div>
     <div class="text-center p-3 mx-auto max-w-sm">
-      <app-button [classes]="'text-xl w-full'">Confirm</app-button>
+      <app-button
+        (invoke)="onConfirm()"
+        [isLoading]="status === 'Processing'"
+        [classes]="'text-xl w-full'"
+        >Confirm</app-button
+      >
     </div>
+  </app-content-card>
+  <app-content-card *ngSwitchCase="'Processing'">
+    <p class="text-center text-4xl">Processing...</p>
+  </app-content-card>
+  <app-content-card *ngSwitchCase="'Success'">
+    <p class="text-center text-4xl">Success!</p>
+  </app-content-card>
+  <app-content-card *ngSwitchCase="'Error'">
+    <h1 class="text-center text-4xl">Failed</h1>
+    <p>Sorry, please try again</p>
   </app-content-card>
 </div>

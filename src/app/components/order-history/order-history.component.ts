@@ -9,8 +9,8 @@ import { Order } from 'src/app/type';
 export class OrderHistoryComponent implements OnInit {
   orders: Order[] = [
     {
-      id: '123',
-      amount: 50,
+      _id: '123',
+      total: 50,
     },
   ];
 

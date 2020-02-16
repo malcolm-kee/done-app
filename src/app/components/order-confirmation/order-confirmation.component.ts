@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { EMPTY, interval, Observable } from 'rxjs';
+import {
+  catchError,
+  delay,
+  skipWhile,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { OrderService } from 'src/app/services/order.service';
+import { UiStatus } from 'src/app/type';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -8,11 +18,45 @@ import { Observable } from 'rxjs';
   styleUrls: ['./order-confirmation.component.scss'],
 })
 export class OrderConfirmationComponent implements OnInit {
-  constructor(public route: ActivatedRoute) {}
+  constructor(
+    public route: ActivatedRoute,
+    private router: Router,
+    private orderService: OrderService
+  ) {}
 
-  $params: Observable<Params>;
+  status: UiStatus = 'Idle';
+  params$: Observable<Params> = this.route.params;
+  createOrder$: Observable<unknown> = this.route.params.pipe(
+    take(1),
+    switchMap(({ amount }) =>
+      this.orderService.createOrder({
+        total: amount,
+      })
+    ),
+    switchMap(order =>
+      interval(1000).pipe(
+        switchMap(() => this.orderService.getOrderStatus(order._id)),
+        skipWhile(result => result.status === 'Created'),
+        take(1)
+      )
+    ),
+    tap(() => {
+      this.status = 'Success';
+    }),
+    catchError(() => {
+      this.status = 'Error';
+      return EMPTY;
+    }),
+    delay(3000),
+    tap(() => {
+      this.router.navigate(['']);
+    })
+  );
 
-  ngOnInit(): void {
-    this.$params = this.route.params;
+  ngOnInit(): void {}
+
+  onConfirm() {
+    this.status = 'Processing';
+    return this.createOrder$.subscribe();
   }
 }
