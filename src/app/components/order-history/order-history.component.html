@@ -1,0 +1,7 @@
+<app-header></app-header>
+<div *ngFor="let order of orders">
+  <app-list-item>
+    <p>Order #: {{ order.id }}</p>
+    <p>RM {{ order.amount }}</p>
+  </app-list-item>
+</div>

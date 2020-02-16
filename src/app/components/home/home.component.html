@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="bg-gray-300 px-4 py-2">
+  <main class="mx-auto max-w-xl bg-gray-100 px-2 pt-4 pb-1 sm:pb-0 shadow-lg">
+    <div class="sr-only">
+      <h1>Done</h1>
+      <p>Payment Made Easy</p>
+    </div>
+    <section class="sm:py-6">
+      <h2 class="text-xl text-center">Select Amount to Pay</h2>
+      <div class="sm:flex justify-between">
+        <div *ngFor="let option of amountOptions">
+          <a
+            routerLink="/confirmation/{{ option }}"
+            class="shadow p-3 mx-1 my-4 sm:w-32 h-20 text-center rounded flex justify-center items-center"
+          >
+            <p>
+              <span>RM</span>
+              <span class="text-3xl">
+                {{ option }}
+              </span>
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <div
+      class="p-2 fixed bottom-0 w-full sm:relative left-0 bg-blue-500 sm:bg-transparent sm:border-t border-gray-300"
+    >
+      <a
+        routerLink="/transactions"
+        class="bg-gray-100 text-blue-800 p-2 block text-center rounded shadow"
+        >Past Transactions</a
+      >
+    </div>
+  </main>
+</div>
