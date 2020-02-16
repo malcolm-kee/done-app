@@ -1,1 +1,9 @@
-<button>{{label}}</button>
+<button
+  [ngClass]="[
+    'bg-blue-500 text-gray-100 px-2 py-1 inline-flex justify-center items-center rounded shadow',
+    classes
+  ]"
+  [type]="type"
+>
+  <ng-content></ng-content>
+</button>

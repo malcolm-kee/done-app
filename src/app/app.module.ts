@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   ButtonComponent,
+  ContentCardComponent,
   HeaderComponent,
   HomeComponent,
   ListItemComponent,
@@ -22,6 +23,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
     OrderHistoryComponent,
     OrderConfirmationComponent,
     HeaderComponent,
+    ContentCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

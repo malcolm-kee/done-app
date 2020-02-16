@@ -1,4 +1,17 @@
-<div class="mx-auto bg-gray-100 max-w-xl py-3">
-  <h1 class="text-2xl text-gray-700">Confirmation</h1>
-  <div>{{ ($params | async).amount }}</div>
+<div class="pt-12">
+  <app-content-card>
+    <div class="px-2 pb-2">
+      <a routerLink="/" class="text-gray-600">< Cancel</a>
+    </div>
+    <h1 class="text-2xl text-center">Confirmation</h1>
+    <div class="text-center">
+      <span class="text-xl">RM</span>
+      <span class="text-6xl">
+        {{ ($params | async).amount }}
+      </span>
+    </div>
+    <div class="text-center p-3 mx-auto max-w-sm">
+      <app-button [classes]="'text-xl w-full'">Confirm</app-button>
+    </div>
+  </app-content-card>
 </div>

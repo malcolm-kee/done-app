@@ -1,7 +1,19 @@
 <app-header></app-header>
-<div *ngFor="let order of orders">
-  <app-list-item>
-    <p>Order #: {{ order.id }}</p>
-    <p>RM {{ order.amount }}</p>
-  </app-list-item>
-</div>
+<app-content-card>
+  <div class="px-2 pb-2">
+    <a routerLink="/" class="text-gray-600">< Back</a>
+  </div>
+  <div class="px-2 pb-3">
+    <h1 class="text-xl mb-3 text-gray-700">Past Transactions</h1>
+    <div *ngFor="let order of orders">
+      <app-list-item>
+        <div class="flex justify-between px-2">
+          <p>
+            Order <b>#{{ order.id }}</b>
+          </p>
+          <p>RM {{ order.amount }}</p>
+        </div>
+      </app-list-item>
+    </div>
+  </div>
+</app-content-card>
