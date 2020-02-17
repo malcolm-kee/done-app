@@ -7,7 +7,9 @@ import {
   ButtonComponent,
   ContentCardComponent,
   HeaderComponent,
+  IconCheckComponent,
   ListItemComponent,
+  SpinnerComponent,
 } from './components';
 import {
   HomeComponent,
@@ -29,6 +31,8 @@ import {
     HeaderComponent,
     ContentCardComponent,
     LoginComponent,
+    SpinnerComponent,
+    IconCheckComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

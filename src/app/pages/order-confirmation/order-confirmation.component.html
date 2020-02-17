@@ -20,13 +20,18 @@
     </div>
   </app-content-card>
   <app-content-card *ngSwitchCase="'Processing'">
-    <p class="text-center text-4xl">Processing...</p>
+    <div class="text-center p-12">
+      <app-spinner></app-spinner>
+    </div>
   </app-content-card>
   <app-content-card *ngSwitchCase="'Success'">
-    <p class="text-center text-4xl">Success!</p>
+    <p class="text-center text-4xl text-green-500">Success!</p>
+    <div class="w-24 mx-auto mb-8">
+      <app-icon-check></app-icon-check>
+    </div>
   </app-content-card>
   <app-content-card *ngSwitchCase="'Error'">
-    <h1 class="text-center text-4xl">Failed</h1>
-    <p class="text-center py-4">Sorry, please try again</p>
+    <h1 class="text-center text-4xl text-red-800">Failed</h1>
+    <p class="text-center py-4">Sorry, please try again later.</p>
   </app-content-card>
 </div>
