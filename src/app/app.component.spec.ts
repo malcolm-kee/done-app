@@ -1,35 +1,34 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { render } from '@testing-library/angular';
+import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    localStorage.clear();
   });
 
-  it(`should have as title 'done-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('done-app');
+  it('should show the app', async () => {
+    const { navigate, getAllByText } = await render(AppComponent, {
+      imports: [AppModule],
+      excludeComponentDeclaration: true,
+      routes,
+    });
+    await navigate('/');
+    await expect(getAllByText('Done').length).toBeGreaterThan(0);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('done-app app is running!');
+  it('should able to login', async () => {
+    const { navigate, getByText, click, findByText } = await render(
+      AppComponent,
+      {
+        imports: [AppModule],
+        excludeComponentDeclaration: true,
+        routes,
+      }
+    );
+    await navigate('/');
+    click(getByText('Login'));
+    await expect(await findByText('Select Amount to Pay')).toBeDefined();
   });
 });

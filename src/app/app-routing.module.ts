@@ -9,7 +9,7 @@ import {
   OrderHistoryComponent,
 } from './pages';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'confirmation/:amount',
     component: OrderConfirmationComponent,
