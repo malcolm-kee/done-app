@@ -7,12 +7,15 @@ import {
   ButtonComponent,
   ContentCardComponent,
   HeaderComponent,
-  HomeComponent,
   ListItemComponent,
-  NotFoundComponent,
-  OrderHistoryComponent,
 } from './components';
-import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import {
+  HomeComponent,
+  LoginComponent,
+  NotFoundComponent,
+  OrderConfirmationComponent,
+  OrderHistoryComponent,
+} from './pages';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
     OrderConfirmationComponent,
     HeaderComponent,
     ContentCardComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

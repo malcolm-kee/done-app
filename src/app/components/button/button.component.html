@@ -1,8 +1,8 @@
 <button
   [ngClass]="[
-    'px-2 py-1 inline-flex justify-center items-center rounded shadow',
+    'px-2 py-1 inline-flex justify-center items-center rounded shadow text-xl',
     isLoading ? 'bg-gray-700 text-gray-100' : 'bg-blue-500 text-gray-100',
-    classes
+    classes || ''
   ]"
   [type]="type"
   (click)="handleClick($event)"
