@@ -5,13 +5,18 @@
   </div>
   <div class="px-2 pb-3">
     <h1 class="text-xl mb-3 text-gray-700">Past Transactions</h1>
-    <div *ngFor="let order of orders">
+    <div *ngFor="let order of orders$ | async">
       <app-list-item>
-        <div class="flex justify-between px-2">
-          <p>
-            Order <b>#{{ order.id }}</b>
-          </p>
-          <p>RM {{ order.total }}</p>
+        <div class="p-2">
+          <div class="flex justify-between items-center">
+            <p class="text-xl">RM {{ order.total }}</p>
+            <span>{{ order.status }}</span>
+          </div>
+          <div>
+            <small>
+              {{ order.updatedAt }}
+            </small>
+          </div>
         </div>
       </app-list-item>
     </div>

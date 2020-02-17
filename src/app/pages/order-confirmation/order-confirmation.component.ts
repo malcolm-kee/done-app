@@ -40,8 +40,8 @@ export class OrderConfirmationComponent implements OnInit {
         take(1)
       )
     ),
-    tap(() => {
-      this.status = 'Success';
+    tap(({ status }) => {
+      this.status = status === 'Cancelled' ? 'Error' : 'Success';
     }),
     catchError(() => {
       this.status = 'Error';
