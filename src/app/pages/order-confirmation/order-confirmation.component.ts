@@ -30,7 +30,7 @@ export class OrderConfirmationComponent implements OnInit {
     take(1),
     switchMap(({ amount }) =>
       this.orderService.createOrder({
-        total: amount,
+        total: Number(amount),
       })
     ),
     switchMap(order =>

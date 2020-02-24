@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../environments/environment';
 import { Order, OrderStatus } from '../type';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class OrderService {
   createOrder(
     order: Omit<Order, '_id' | 'createdAt' | 'updatedAt' | 'status'>
   ): Observable<Order> {
-    return this.http.post<Order>('http://localhost:3000', {
+    return this.http.post<Order>(environment.apiBaseUrl, {
       ...order,
       userId: this.authService.userId,
     });
@@ -21,13 +22,13 @@ export class OrderService {
 
   getOrderStatus(orderId: string): Observable<{ status: OrderStatus }> {
     return this.http.get<{ status: OrderStatus }>(
-      `http://localhost:3000/status/${orderId}`
+      `${environment.apiBaseUrl}/status/${orderId}`
     );
   }
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(
-      `http://localhost:3000/user/${this.authService.userId}`
+      `${environment.apiBaseUrl}/user/${this.authService.userId}`
     );
   }
 }
