@@ -1,5 +1,7 @@
 # DoneApp
 
+[![Coverage Status](https://coveralls.io/repos/github/malcolm-kee/done-app/badge.svg?branch=master)](https://coveralls.io/github/malcolm-kee/done-app?branch=master)
+
 E-Payment Made Easy: Consider It Done.
 
 ![Demo](images/demo.gif)
